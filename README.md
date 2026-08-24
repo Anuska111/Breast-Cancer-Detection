@@ -190,28 +190,29 @@ Breast-Cancer-Detection/
 ├── pyproject.toml
 ├── .gitignore
 └── README.md
-
+```
 
 ###  End-to-End Pipeline
 
 ```markdown
 ## 🔄 End-to-End Pipeline
 
-| Step | Process |
-|---:|---|
-| 1 | Dataset Collection |
-| 2 | Image Preprocessing |
-| 3 | Resize Images to 128 × 128 |
-| 4 | Pixel Normalization |
-| 5 | Train/Validation Split |
-| 6 | CNN Model Training |
-| 7 | Model Evaluation |
-| 8 | Classification Report |
-| 9 | ROC-AUC Evaluation |
-| 10 | Model Compression |
-| 11 | TensorFlow Lite Conversion |
-| 12 | Streamlit Application |
-| 13 | Cloud Deployment |
+| Step | Process                    |
+| ---: | -------------------------- |
+|    1 | Dataset Collection         |
+|    2 | Image Preprocessing        |
+|    3 | Resize Images to 128 × 128 |
+|    4 | Pixel Normalization        |
+|    5 | Train/Validation Split     |
+|    6 | CNN Model Training         |
+|    7 | Model Evaluation           |
+|    8 | Classification Report      |
+|    9 | ROC-AUC Evaluation         |
+|   10 | Model Compression          |
+|   11 | TensorFlow Lite Conversion |
+|   12 | Streamlit Application      |
+|   13 | Cloud Deployment           |
+
 ```
 ## 🚀 Deployment
 
