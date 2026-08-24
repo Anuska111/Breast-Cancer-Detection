@@ -89,15 +89,15 @@ Streamlit Deployment
 |---|---:|---:|
 | Training Set | 1,263 | 80% |
 | Validation Set | 315 | 20% |
-| Total | 1,578 | 100% |
+| Total | **1,578** | **100%** |
 
 ### Class Distribution
 
 | Class | Description |
 |---|---|
-| 🟢 Benign | Benign breast ultrasound images |
-| 🔴 Malignant | Malignant breast ultrasound images |
-| 🔵 Normal | Normal breast ultrasound images |
+| Benign | Benign breast ultrasound images |
+| Malignant | Malignant breast ultrasound images |
+| Normal | Normal breast ultrasound images |
 
 ---
 
@@ -106,9 +106,9 @@ Streamlit Deployment
 | Component | Details |
 |---|---|
 | Model Type | Convolutional Neural Network (CNN) |
-| Input Size | **128 × 128 × 3** |
-| Input Type | RGB Image |
-| Number of Classes | **3** |
+| Input Size | 128 × 128 × 3 |
+| Input Format | RGB |
+| Number of Classes | 3 |
 | Classes | Benign, Malignant, Normal |
 | Activation | ReLU + Softmax |
 | Loss Function | Categorical Crossentropy |
@@ -129,10 +129,10 @@ Streamlit Deployment
 
 | Class | Precision | Recall | F1-Score | Support |
 |---|---:|---:|---:|---:|
-| 🟢 Benign | 0.81 | 0.92 | 0.86 | 168 |
-| 🔴 Malignant | 0.82 | 0.67 | 0.74 | 82 |
-| 🔵 Normal | 0.96 | 0.85 | 0.90 | 65 |
-| **Overall Accuracy** | **0.84** | | **0.84** | **315** |
+| Benign | 0.81 | 0.92 | 0.86 | 168 |
+| Malignant | 0.82 | 0.67 | 0.74 | 82 |
+| Normal | 0.96 | 0.85 | 0.90 | 65 |
+| **Accuracy** | — | — | **0.84** | **315** |
 | **Macro Average** | **0.87** | **0.81** | **0.83** | **315** |
 | **Weighted Average** | **0.85** | **0.84** | **0.84** | **315** |
 
@@ -140,16 +140,16 @@ Streamlit Deployment
 
 ## 🔬 Prediction Output
 
-The CNN generates a probability for each class.
+The CNN generates a probability distribution across all three classes.
 
 | Class | Example Probability |
 |---|---:|
-| 🟢 Benign | 12% |
-| 🔴 Malignant | **81%** |
-| 🔵 Normal | 7% |
-| **Final Prediction** | **🔴 Malignant** |
+| Benign | 12% |
+| Malignant | **81%** |
+| Normal | 7% |
+| **Final Prediction** | **Malignant** |
 
-> The final prediction is the class with the highest model probability.
+> The final prediction corresponds to the class with the highest model probability.
 
 ---
 
@@ -157,11 +157,11 @@ The CNN generates a probability for each class.
 
 | Model Confidence | Interpretation |
 |---|---|
-| 🟢 **80% – 100%** | High model confidence |
-| 🟡 **60% – 79%** | Moderate model confidence |
-| 🔴 **Below 60%** | Lower model confidence |
+| 80% – 100% | High model confidence |
+| 60% – 79% | Moderate model confidence |
+| Below 60% | Lower model confidence |
 
-> **Note:** These values represent model confidence and are not medical risk percentages.
+> **Note:** Model confidence should not be interpreted as medical risk or diagnostic certainty.
 
 ---
 
@@ -169,108 +169,47 @@ The CNN generates a probability for each class.
 
 | Model Version | Size |
 |---|---:|
-| Original CNN Model | **~37.87 MB** |
+| Original CNN Model | ~37.87 MB |
 | Float16 TFLite Model | **~6.31 MB** |
 | Size Reduction | **~83%** |
 
-The trained CNN was converted into a **TensorFlow Lite Float16 model** to significantly reduce the model size and make deployment more lightweight.
+The trained CNN was converted into a **TensorFlow Lite Float16 model** to reduce the model size and make deployment more lightweight.
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Category | Technology |
+| Category | Technologies |
 |---|---|
-| Programming Language | **Python** |
-| Deep Learning | **TensorFlow / Keras** |
-| Model | **CNN** |
-| Numerical Computing | **NumPy** |
-| Image Processing | **Pillow** |
-| Web Framework | **Streamlit** |
-| Model Optimization | **TensorFlow Lite** |
-| Development Environment | **Google Colab / PyCharm** |
-| Version Control | **Git & GitHub** |
-| Deployment | **Streamlit Community Cloud** |
+| Programming | Python |
+| Deep Learning | TensorFlow, Keras |
+| Architecture | CNN |
+| Numerical Computing | NumPy |
+| Image Processing | Pillow |
+| Web Application | Streamlit |
+| Model Optimization | TensorFlow Lite |
+| Development | Google Colab, PyCharm |
+| Version Control | Git, GitHub |
+| Deployment | Streamlit Community Cloud |
 
 ---
 
 ## 🗂️ Project Structure
 
-| File | Purpose |
-|---|---|
-| `app.py` | Streamlit web application |
-| `main.py` | Main Python project/model code |
-| `tumor_cnn_float16.tflite` | Compressed CNN model |
-| `best_tumor_cnn.keras` | Best trained CNN model |
-| `breast_cancer_cnn_model.keras` | CNN model |
-| `breast_cancer_model.keras` | Trained model |
-| `requirements.txt` | Python dependencies |
-| `.gitignore` | Files excluded from GitHub |
-| `README.md` | Project documentation |
-
----
-
-## 🔄 End-to-End Pipeline
-
-| Stage | Process |
-|---|---|
-| 1️⃣ | Dataset Collection |
-| 2️⃣ | Image Preprocessing |
-| 3️⃣ | Image Resizing to **128 × 128** |
-| 4️⃣ | Pixel Normalization |
-| 5️⃣ | Train/Validation Split |
-| 6️⃣ | CNN Model Training |
-| 7️⃣ | Model Evaluation |
-| 8️⃣ | Classification Report |
-| 9️⃣ | ROC-AUC Evaluation |
-| 🔟 | CNN Model Compression |
-| 1️⃣1️⃣ | TensorFlow Lite Conversion |
-| 1️⃣2️⃣ | Streamlit Application |
-| 1️⃣3️⃣ | Cloud Deployment |
-
----
-
-## ⚠️ Medical Disclaimer
-
-> **BreastCare AI is an educational and research project.**
->
-> The predictions generated by this application are **not a medical diagnosis** and should not replace professional medical examination, radiological interpretation, biopsy, or clinical decision-making.
->
-> The percentages displayed by the application represent **CNN model probabilities**, not actual medical risk percentages.
-
----
-
-## 🔮 Future Improvements
-
-| Planned Improvement | Purpose |
-|---|---|
-| Grad-CAM | Visual model explainability |
-| Transfer Learning | Improve feature extraction |
-| Data Augmentation | Improve model generalization |
-| Class Balancing | Reduce class imbalance |
-| External Test Set | Better performance validation |
-| Model Calibration | Improve probability reliability |
-| Explainable AI | Understand model decisions |
-| Clinical Validation | Evaluate real-world applicability |
-
----
-
-## 👩‍💻 Author
-
-**Anuska Biswas**
-
-**B.Tech — Mechanical Engineering**  
-**IIT (BHU), Varanasi**
-
-**Interests:** Data Science • Machine Learning • Deep Learning •
-
----
-
-## 🚀 Live Demo
-
-**Try the application:**  
-https://breast-cancer-detection-j2qoy4gbm46kuhurpeblq9.streamlit.app/
-
+```text
+Breast-Cancer-Detection/
+│
+├── app.py
+├── main.py
+├── tumor_cnn_float16.tflite
+├── best_tumor_cnn.keras
+├── breast_cancer_cnn_model.keras
+├── breast_cancer_model.keras
+├── scaler.pkl
+├── requirements.txt
+├── pyproject.toml
+├── .gitignore
+└── README.md
 ---
 
 ⭐ **If you found this project interesting, feel free to explore the repository and try the live demo.**
