@@ -1,6 +1,6 @@
 
 import streamlit as st
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 import numpy as np
 from PIL import Image
 
@@ -39,9 +39,9 @@ st.divider()
 
 @st.cache_resource
 def load_model():
-    interpreter = tf.lite.Interpreter(
-        model_path="tumor_cnn_float16.tflite"
-    )
+    interpreter = tflite.Interpreter(
+    model_path="tumor_cnn_float16.tflite"
+)
     interpreter.allocate_tensors()
 
     return (
