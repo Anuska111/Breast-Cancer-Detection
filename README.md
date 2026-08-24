@@ -84,13 +84,11 @@ Streamlit Deployment
 ---
 
 ## 📊 Dataset Distribution
-
-| 📊 Dataset Split         | 🔢 Number of Images |
-| ------------------------ | ------------------: |
-| 📦 **Total Images**      |           **1,578** |
-| 🧠 **Training Images**   |           **1,263** |
-| 🧪 **Validation Images** |             **315** |
-
+| 📊 Dataset Split | 🔢 Number of Images | 📈 Percentage |
+| :--- | :---: | :---: |
+| 🧠 **Training Set** | 1,263 | ~80% |
+| 🧪 **Validation Set** | 315 | ~20% |
+| 📦 **Total Images** | **1,578** | **100%** |
 ### Class Distribution
 
 | Class | Description |
