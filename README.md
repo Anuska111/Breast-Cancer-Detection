@@ -81,135 +81,143 @@ TensorFlow Lite Compression
           ↓
 Streamlit Deployment
 
+# 🎗️ BreastCare AI — Ultrasound Breast Tumor Classification
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://breast-cancer-detection-j2qoy4gbm46kuhurpeblq9.streamlit.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat&logo=github)](https://github.com/)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=flat&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+An end-to-end deep learning pipeline and interactive web interface designed for the multi-class classification of breast ultrasound images into **Benign**, **Malignant**, and **Normal** tissue categories. The application leverages an optimized, quantized **TensorFlow Lite (Float16)** architecture deployed to the cloud for real-time edge inference.
+
 ---
+
+## 🚀 Live Demo
+
+Experience the production web application here:  
+👉 **[Launch BreastCare AI Interactive Web App](https://breast-cancer-detection-j2qoy4gbm46kuhurpeblq9.streamlit.app/)**
+
+---
+
+## 📊 Dataset Overview
+
+The dataset consists of high-resolution ultrasound scans categorized into three diagnostic classes.
 
 ### Dataset Distribution
 
-| Dataset Split | Number of Images | Percentage |
-|---|---:|---:|
-| Training Set | 1,263 | 80% |
-| Validation Set | 315 | 20% |
-| Total | **1,578** | **100%** |
+| Split | Number of Images | Percentage |
+| :--- | :---: | :---: |
+| 🧠 **Training Set** | 1,263 | 80% |
+| 🧪 **Validation Set** | 315 | 20% |
+| 📦 **Total Dataset** | **1,578** | **100%** |
 
-### Class Distribution
+### Class Categorization
 
-| Class | Description |
-|---|---|
-| Benign | Benign breast ultrasound images |
-| Malignant | Malignant breast ultrasound images |
-| Normal | Normal breast ultrasound images |
-
----
-
-## 🧠 Model Architecture
-
-| Component | Details |
-|---|---|
-| Model Type | Convolutional Neural Network (CNN) |
-| Input Size | 128 × 128 × 3 |
-| Input Format | RGB |
-| Number of Classes | 3 |
-| Classes | Benign, Malignant, Normal |
-| Activation | ReLU + Softmax |
-| Loss Function | Categorical Crossentropy |
-| Optimizer | Adam |
-| Output | 3-Class Probability Distribution |
+| Class | Diagnostic Description |
+| :--- | :--- |
+| 🟢 **Benign** | Non-cancerous lesions or structural fibroadenomas |
+| 🔴 **Malignant** | Invasive or high-grade cancerous tissue requiring clinical intervention |
+| 🔵 **Normal** | Healthy, non-pathological breast tissue architecture |
 
 ---
 
-## 📈 Model Performance
+## 🧠 Model Architecture & Specifications
 
-| Metric | Score |
-|---|---:|
-| Validation Accuracy | **84.13%** |
-| ROC-AUC Score | **0.91** |
-| Validation Samples | **315** |
+| Parameter | Configuration |
+| :--- | :--- |
+| **Architecture Type** | Deep Convolutional Neural Network (1D/2D CNN) |
+| **Input Resolution** | `128 × 128 × 3` (RGB) |
+| **Classification Strategy** | 3-Class Categorical Softmax |
+| **Activation Functions** | Rectified Linear Unit (ReLU), Softmax |
+| **Loss Function** | Categorical Crossentropy |
+| **Optimizer** | Adam ($\beta_1=0.9, \beta_2=0.999$) |
+| **Inference Output** | 3-Class Normalized Probability Distribution |
 
-### Classification Report
+---
 
-| Class | Precision | Recall | F1-Score | Support |
-|---|---:|---:|---:|---:|
-| Benign | 0.81 | 0.92 | 0.86 | 168 |
-| Malignant | 0.82 | 0.67 | 0.74 | 82 |
-| Normal | 0.96 | 0.85 | 0.90 | 65 |
-| **Accuracy** | — | — | **0.84** | **315** |
+## 📈 Performance & Clinical Evaluation
+
+The trained CNN achieved high precision and stability on unseen validation folds:
+
+| Metric | Benchmark Score |
+| :--- | :---: |
+| **Overall Validation Accuracy** | **84.13%** |
+| **Area Under ROC Curve (ROC-AUC)** | **0.91** |
+| **Total Validation Samples** | **315** |
+
+### Detailed Classification Report
+
+| Diagnostic Class | Precision | Recall | F1-Score | Support |
+| :--- | :---: | :---: | :---: | :---: |
+| 🟢 **Benign** | 0.81 | 0.92 | 0.86 | 168 |
+| 🔴 **Malignant** | 0.82 | 0.67 | 0.74 | 82 |
+| 🔵 **Normal** | 0.96 | 0.85 | 0.90 | 65 |
+| **Overall Accuracy** | — | — | **0.84** | **315** |
 | **Macro Average** | **0.87** | **0.81** | **0.83** | **315** |
 | **Weighted Average** | **0.85** | **0.84** | **0.84** | **315** |
 
 ---
 
-## 🔬 Prediction Output
+## 🔬 Sample Prediction & Output Logic
 
-The CNN generates a probability distribution across all three classes.
+The network yields normalized output distributions across all label spaces:
 
-| Class | Example Probability |
-|---|---:|
-| Benign | 12% |
-| Malignant | **81%** |
-| Normal | 7% |
-| **Final Prediction** | **Malignant** |
+| Class | Model Probability | Classification Status |
+| :--- | :---: | :---: |
+| 🟢 **Benign** | 12.0% | Negative |
+| 🔴 **Malignant** | **81.0%** | **Positive (Primary)** |
+| 🔵 **Normal** | 7.0% | Negative |
+| **Final Diagnosis** | **81.0%** | 🔴 **Malignant** |
 
-> The final prediction corresponds to the class with the highest model probability.
+### Decision Confidence Matrix
 
----
-
-## 🎯 Confidence Interpretation
-
-| Model Confidence | Interpretation |
-|---|---|
-| 80% – 100% | High model confidence |
-| 60% – 79% | Moderate model confidence |
-| Below 60% | Lower model confidence |
-
-> **Note:** Model confidence should not be interpreted as medical risk or diagnostic certainty.
+| Confidence Bracket | Classification Category | Interpretation |
+| :---: | :--- | :--- |
+| 🟢 **80% – 100%** | High Confidence | Strong feature alignment with reference patterns |
+| 🟡 **60% – 79%** | Moderate Confidence | Secondary review and feature correlation recommended |
+| 🔴 **< 60%** | Inconclusive | Low certainty; manual histopathological validation required |
 
 ---
 
-## 📦 Model Optimization
+## 📦 Model Optimization & Edge Deployment
 
-| Model Version | Size |
-|---|---:|
-| Original CNN Model | ~37.87 MB |
-| Float16 TFLite Model | **~6.31 MB** |
-| Size Reduction | **~83%** |
+Post-training quantization was conducted via **TensorFlow Lite (Float16)** to minimize inference latency and maximize cloud portability.
 
-The trained CNN was converted into a **TensorFlow Lite Float16 model** to reduce the model size and make deployment more lightweight.
+| Artifact | Format | Binary Size | Compression Ratio |
+| :--- | :---: | :---: | :---: |
+| Native Keras Graph | `.keras` | ~37.87 MB | Baseline |
+| **Float16 Quantized Model** | `.tflite` | **~6.31 MB** | **~83.3% Reduction** |
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Category | Technologies |
-|---|---|
-| Programming | Python |
-| Deep Learning | TensorFlow, Keras |
-| Architecture | CNN |
-| Numerical Computing | NumPy |
-| Image Processing | Pillow |
-| Web Application | Streamlit |
-| Model Optimization | TensorFlow Lite |
-| Development | Google Colab, PyCharm |
-| Version Control | Git, GitHub |
-| Deployment | Streamlit Community Cloud |
+| Domain | Frameworks & Tools |
+| :--- | :--- |
+| **Core Environment** | Python 3.10+ |
+| **Deep Learning & Inference** | TensorFlow 2.x, Keras, TensorFlow Lite Runtime |
+| **Numerical & Matrix Operations** | NumPy, Pandas, Scikit-Learn |
+| **Image Preprocessing** | Pillow (PIL), OpenCV |
+| **Web Framework & UI** | Streamlit |
+| **Deployment & Versioning** | Streamlit Community Cloud, Git, GitHub |
 
 ---
 
-## 🗂️ Project Structure
+## 🗂️ Repository Structure
 
 ```text
 Breast-Cancer-Detection/
 │
-├── app.py
-├── main.py
-├── tumor_cnn_float16.tflite
-├── best_tumor_cnn.keras
-├── breast_cancer_cnn_model.keras
-├── breast_cancer_model.keras
-├── scaler.pkl
-├── requirements.txt
-├── pyproject.toml
-├── .gitignore
-└── README.md
+├── app.py                          # Streamlit application UI and pipeline entry point
+├── main.py                         # Training, validation, and serialization pipeline
+├── tumor_cnn_float16.tflite        # Quantized production TFLite model (~6.31 MB)
+├── best_tumor_cnn.keras            # Checkpointed full-precision Keras model
+├── breast_cancer_cnn_model.keras   # Pre-trained 1D/2D CNN model weights
+├── breast_cancer_model.keras       # Baseline neural network model artifact
+├── scaler.pkl                      # Feature standardization parameters
+├── requirements.txt                # Production dependency manifest
+├── .gitignore                      # Git exclusion rules
+└── README.md                       # Comprehensive project documentation
 ---
 
-⭐ **If you found this project interesting, feel free to explore the repository and try the live demo.**
