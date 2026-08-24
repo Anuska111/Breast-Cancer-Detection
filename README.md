@@ -1,4 +1,4 @@
-# 🎗️ BreastCare AI — Breast Ultrasound Classification using CNN
+# 🎗️ BreastCare AI — Breast Ultrasound Classification 
 
 <p align="center">
   <b>Deep Learning Based Breast Ultrasound Image Classification</b>
