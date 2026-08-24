@@ -79,7 +79,7 @@ ROC-AUC Evaluation
 TensorFlow Lite Compression
           ↓
 Streamlit Deployment
------
+```
 📊 Dataset Distribution
 | Dataset Split  | Number of Images | Percentage |
 | -------------- | ---------------: | ---------: |
