@@ -191,7 +191,7 @@ Breast-Cancer-Detection/
 ├── .gitignore
 └── README.md
 
-
+```
 ### 1️⃣1️⃣ End-to-End Pipeline
 
 ```markdown
@@ -212,7 +212,7 @@ Breast-Cancer-Detection/
 | 11 | TensorFlow Lite Conversion |
 | 12 | Streamlit Application |
 | 13 | Cloud Deployment |
-
+```
 ## 🚀 Deployment
 
 The application is deployed using **Streamlit Community Cloud**.
